@@ -12,18 +12,18 @@ import re
 import datetime
 import json
 from webdriver_manager.chrome import ChromeDriverManager
-
+from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.core.os_manager import ChromeType
 # import chromedriver_autoinstaller
-
+from selenium.webdriver.edge.service import Service as EdgeService
 
 #______________________________
 def init_driver():
     
     # edge_options = webdriver.EdgeOptions()
-    options = Options()
-    driver = webdriver.Edge(options=options)
+    # options = Options()
+    # driver = webdriver.Edge(options=options)
     
     # cService = webdriver.ChromeService(executable_path='./chromedriver.exe')
     # driver = webdriver.Chrome(service = cService)
@@ -34,33 +34,11 @@ def init_driver():
     
     # driver_path = ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
     # driver = webdriver.Chrome(driver_path)
-        
-    # chromedriver_autoinstaller.install()  # Check if the current version of chromedriver exists
-    #                                     # and if it doesn't exist, download it automatically,
-    #                                     # then add chromedriver to path
 
-    # chrome_options = webdriver.ChromeOptions()    
-    # # Add your options as needed    
-    # options = [
-    # # Define window size here
-    # "--window-size=1200,1200",
-    #     "--ignore-certificate-errors"
-    
-    #     #"--headless",
-    #     #"--disable-gpu",
-    #     #"--window-size=1920,1200",
-    #     #"--ignore-certificate-errors",
-    #     #"--disable-extensions",
-    #     #"--no-sandbox",
-    #     #"--disable-dev-shm-usage",
-    #     #'--remote-debugging-port=9222'
-    # ]
+    # edge_options = webdriver.EdgeOptions()
+    options = Options()
+    driver = webdriver.Edge(options=options)
 
-    # for option in options:
-    #     chrome_options.add_argument(option)
-
-        
-    # driver = webdriver.Chrome(options = chrome_options)
 
     
     return driver

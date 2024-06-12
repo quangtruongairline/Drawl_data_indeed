@@ -28,10 +28,7 @@ jobs:
     #   run: sudo apt install -y chromium-browser
 
 
-    - name: Installing all necessary packages
-      run: pip install chromedriver-autoinstaller selenium pyvirtualdisplay
-    - name: Install xvfb
-      run: sudo apt-get install xvfb
+
     # - name: Install Edge and EdgeDriver
     #   run: |
     #     sudo apt-get update
@@ -44,7 +41,15 @@ jobs:
     #     wget https://msedgedriver.azureedge.net/${EDGE_VERSION}/edgedriver_linux64.zip
     #     unzip edgedriver_linux64.zip
     #     sudo mv msedgedriver /usr/local/bin/
+    - name: Install Microsoft Edge
+      run: |
+        wget https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
+        sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-dev.list'
+        sudo apt update
+        sudo apt install microsoft-edge-stable
 
+
+        
     - name: Run scraping script
       run: python scrape_data.py
 
