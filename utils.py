@@ -12,10 +12,13 @@ import re
 import datetime
 import json
 
+
 #______________________________
 def init_driver():
+    
+    edge_options = webdriver.EdgeOptions()
     options = Options()
-    driver = webdriver.Edge(options=options)
+    driver = webdriver.Edge(options=edge_options)
     
     return driver
 
