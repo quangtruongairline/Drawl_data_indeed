@@ -16,9 +16,11 @@ import json
 #______________________________
 def init_driver():
     
-    edge_options = webdriver.EdgeOptions()
-    options = Options()
-    driver = webdriver.Edge(options=edge_options)
+    # edge_options = webdriver.EdgeOptions()
+    # options = Options()
+    # driver = webdriver.Edge(options=edge_options)
+    cService = webdriver.ChromeService(executable_path='./chromedriver.exe')
+    driver = webdriver.Chrome(service = cService)
     
     return driver
 
