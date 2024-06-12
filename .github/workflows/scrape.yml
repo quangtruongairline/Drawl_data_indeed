@@ -23,6 +23,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
+        
+    - name: Install a new Chromium
+      run: sudo apt install -y chromium-browser
     # - name: Install Edge and EdgeDriver
     #   run: |
     #     sudo apt-get update
