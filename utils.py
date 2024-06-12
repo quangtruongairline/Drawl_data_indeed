@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 import re
 import datetime
 import json
-
+from webdriver_manager.chrome import ChromeDriverManager
 
 #______________________________
 def init_driver():
@@ -19,8 +19,11 @@ def init_driver():
     # edge_options = webdriver.EdgeOptions()
     # options = Options()
     # driver = webdriver.Edge(options=edge_options)
-    cService = webdriver.ChromeService(executable_path='./chromedriver.exe')
-    driver = webdriver.Chrome(service = cService)
+    # cService = webdriver.ChromeService(executable_path='./chromedriver.exe')
+    # driver = webdriver.Chrome(service = cService)
+    
+    cService = webdriver.ChromeService(executable_path=ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=cService)
     
     return driver
 
