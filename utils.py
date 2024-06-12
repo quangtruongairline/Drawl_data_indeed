@@ -11,10 +11,10 @@ from bs4 import BeautifulSoup
 import re
 import datetime
 import json
-from webdriver_manager.chrome import ChromeDriverManager
+# from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from selenium.webdriver.chrome.options import Options
-from webdriver_manager.core.os_manager import ChromeType
+# from webdriver_manager.core.os_manager import ChromeType
 # import chromedriver_autoinstaller
 from selenium.webdriver.edge.service import Service as EdgeService
 
