@@ -26,7 +26,7 @@ def init_driver():
     # cService = webdriver.ChromeService(executable_path='./chromedriver.exe')
     # driver = webdriver.Chrome(service = cService)
     chrome_options = Options()
-    chrome_options.add_argument("--headless")
+    # chrome_options.add_argument("--headless")
     driver = webdriver.Chrome(options=chrome_options)
     
     return driver
