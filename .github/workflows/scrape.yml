@@ -24,8 +24,14 @@ jobs:
         pip install -r requirements.txt
 
         
-    - name: Install a new Chromium
-      run: sudo apt install -y chromium-browser
+    # - name: Install a new Chromium
+    #   run: sudo apt install -y chromium-browser
+
+
+    - name: Installing all necessary packages
+      run: pip install chromedriver-autoinstaller selenium pyvirtualdisplay
+    - name: Install xvfb
+      run: sudo apt-get install xvfb
     # - name: Install Edge and EdgeDriver
     #   run: |
     #     sudo apt-get update
