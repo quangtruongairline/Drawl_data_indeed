@@ -13,6 +13,10 @@ import datetime
 import json
 from webdriver_manager.chrome import ChromeDriverManager
 
+from selenium.webdriver.chrome.options import Options
+
+
+
 #______________________________
 def init_driver():
     
@@ -21,9 +25,9 @@ def init_driver():
     # driver = webdriver.Edge(options=edge_options)
     # cService = webdriver.ChromeService(executable_path='./chromedriver.exe')
     # driver = webdriver.Chrome(service = cService)
-    
-    cService = webdriver.ChromeService(executable_path=ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=cService)
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    driver = webdriver.Chrome(options=chrome_options)
     
     return driver
 
