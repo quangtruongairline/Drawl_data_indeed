@@ -4,7 +4,7 @@ from time import sleep
 import random
 from selenium.common.exceptions import NoSuchElementException, ElementNotInteractableException
 from selenium.webdriver.common.by import By
-import pandas as pd
+# import pandas as pd
 from selenium.webdriver.edge.options import Options
 from selenium.webdriver.common.keys import Keys
 from bs4 import BeautifulSoup
