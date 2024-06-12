@@ -17,6 +17,7 @@ from selenium.webdriver.chrome.options import Options
 # from webdriver_manager.core.os_manager import ChromeType
 # import chromedriver_autoinstaller
 from selenium.webdriver.edge.service import Service as EdgeService
+from selenium.webdriver.chrome.service import Service
 
 #______________________________
 def init_driver():
@@ -41,8 +42,12 @@ def init_driver():
     # driver = webdriver.Edge(options=options)
 
 
-    driver = webdriver.Chrome(ChromeDriverManager().install())
-
+    service = Service(ChromeDriverManager().install())
+    options = webdriver.ChromeOptions()
+    options.add_argument('--headless')
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-dev-shm-usage')
+    driver = webdriver.Chrome(service=service, options=options)
 
     
     return driver

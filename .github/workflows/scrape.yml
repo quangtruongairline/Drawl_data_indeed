@@ -48,8 +48,11 @@ jobs:
         sudo apt update
         sudo apt install microsoft-edge-stable
 
+    - name: Install Chrome
+      run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
 
-        
     - name: Run scraping script
       run: python scrape_data.py
 
