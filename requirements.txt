@@ -1,5 +1,4 @@
 webdriver-manager 
 selenium
-urllib
 beautifulsoup4
 argparse
