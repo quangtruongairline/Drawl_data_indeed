@@ -3,9 +3,8 @@ selenium
 beautifulsoup4
 argparse
 numpy
-time
+
 pandas
 bs4
 re
 datetime
-json
