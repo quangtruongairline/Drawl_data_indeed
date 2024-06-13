@@ -29,18 +29,18 @@ jobs:
 
 
 
-    # - name: Install Edge and EdgeDriver
-    #   run: |
-    #     sudo apt-get update
-    #     sudo apt-get install -y wget software-properties-common
-    #     wget https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
-    #     sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main"
-    #     sudo apt-get update
-    #     sudo apt-get install -y microsoft-edge-stable
-    #     EDGE_VERSION=$(microsoft-edge --version | grep -oP '\d+\.\d+\.\d+\.\d+')
-    #     wget https://msedgedriver.azureedge.net/${EDGE_VERSION}/edgedriver_linux64.zip
-    #     unzip edgedriver_linux64.zip
-    #     sudo mv msedgedriver /usr/local/bin/
+    - name: Install Edge and EdgeDriver
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y wget software-properties-common
+        wget https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
+        sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main"
+        sudo apt-get update
+        sudo apt-get install -y microsoft-edge-stable
+        EDGE_VERSION=$(microsoft-edge --version | grep -oP '\d+\.\d+\.\d+\.\d+')
+        wget https://msedgedriver.azureedge.net/${EDGE_VERSION}/edgedriver_linux64.zip
+        unzip edgedriver_linux64.zip
+        sudo mv msedgedriver /usr/local/bin/
     - name: Install Microsoft Edge
       run: |
         wget https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
