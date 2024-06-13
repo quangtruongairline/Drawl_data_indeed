@@ -2,8 +2,8 @@ name: Scrape Data
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # Thực hiện mỗi ngày lúc nửa đêm
-  workflow_dispatch:  # Cho phép kích hoạt thủ công
+    - cron: '0 0 * * *'  
+  workflow_dispatch: 
 
 jobs:
   scrape:
