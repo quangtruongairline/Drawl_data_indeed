@@ -19,6 +19,7 @@ if __name__ == "__main__":
     url, job_, location = args.url, args.job, args.location
     
     access(driver,url)
+    
     search(driver,job_,location)
     data=info_job(driver)
     save_data(data)

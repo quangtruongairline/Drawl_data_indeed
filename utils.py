@@ -23,7 +23,7 @@ from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 # from webdriver_manager.core.utils import ChromeType
 from webdriver_manager.core.os_manager import ChromeType
-from selenium.webdriver.chrome.options import Options
+# from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 #______________________________
 def init_driver():
@@ -65,7 +65,7 @@ def init_driver():
     
 
 
-    chrome_service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
+    # chrome_service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
 
     chrome_options = Options()
     options = [
@@ -77,10 +77,14 @@ def init_driver():
         "--no-sandbox",
         "--disable-dev-shm-usage"
     ]
+    
+    chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
+
     for option in options:
         chrome_options.add_argument(option)
 
-    driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
+    driver = webdriver.Edge(options=chrome_options)
+    
     return driver
 
 
@@ -89,11 +93,14 @@ def init_driver():
 def access(driver,url):
     print("_"*30, "ACCESS URL","_"*30)
     driver.get(url)
-    sleep(3)
+    
+    print(driver.title)
+    sleep(5)
 
 
 def search(driver, job, location):
     print("_"*30, "SEARCH","_"*30)
+
     search_box_job = driver.find_element(By.XPATH, '//input[@id="text-input-what"]')#(By.ID, 'text-input-what')
     search_box_location=driver.find_element(By.XPATH, '//input[@id="text-input-where"]')#(By.ID, 'text-input-where')
     search_box_job.send_keys(job)
@@ -102,9 +109,9 @@ def search(driver, job, location):
     search_box_location.send_keys(Keys.RETURN)
     driver.implicitly_wait(5)
     
-    next = driver.find_element(By.XPATH, '//a[@data-testid="pagination-page-next"]')
-    next.click()
-    sleep(4)
+    # next = driver.find_element(By.XPATH, '//a[@data-testid="pagination-page-next"]')
+    # next.click()
+    # sleep(4)
 
 
 def save_data(dict_jd):
@@ -150,7 +157,8 @@ def info_job(driver):
             try:              
                 name_job_ = driver.find_element(By.XPATH, '//h2[@data-testid="jobsearch-JobInfoHeader-title"]/span').text
                 name_job = name_job_.replace("- job post", "").strip()
-                            
+                
+                print(name_job)  
                 name_company = driver.find_element(By.XPATH, '//div[@data-testid="inlineHeader-companyName"]/span/a').text
 
                 location = driver.find_element(By.XPATH, '//div[@data-testid="inlineHeader-companyLocation"]/div').text
