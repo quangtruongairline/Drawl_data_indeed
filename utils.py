@@ -1,72 +1,17 @@
-import numpy as np
 from selenium import webdriver
 from time import sleep
 import random
 from selenium.common.exceptions import NoSuchElementException, ElementNotInteractableException
 from selenium.webdriver.common.by import By
-# import pandas as pd
 from selenium.webdriver.edge.options import Options
 from selenium.webdriver.common.keys import Keys
 from bs4 import BeautifulSoup
 import re
 import datetime
-import json
-from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.microsoft import EdgeChromiumDriverManager
-# from selenium.webdriver.chrome.options import Options
-# from webdriver_manager.core.os_manager import ChromeType
-# import chromedriver_autoinstaller
-from selenium.webdriver.edge.service import Service as EdgeService
-from selenium.webdriver.chrome.service import Service
-    
-from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
-# from webdriver_manager.core.utils import ChromeType
-from webdriver_manager.core.os_manager import ChromeType
-# from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
-#______________________________
+import json    
+
 def init_driver():
     
-    # edge_options = webdriver.EdgeOptions()
-    # options = Options()
-    # driver = webdriver.Edge(options=options)
-    
-    # cService = webdriver.ChromeService(executable_path='./chromedriver.exe')
-    # driver = webdriver.Chrome(service = cService)
-    
-    # chrome_options = Options()
-    # chrome_options.add_argument("--headless")s
-    # driver = webdriver.Chrome(options=chrome_options)
-    
-    # driver_path = ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
-    # driver = webdriver.Chrome(driver_path)
-
-    # edge_options = webdriver.EdgeOptions()
-    # edge_options = webdriver.EdgeOptions()    
-    # options = Options()
-    # driver = webdriver.Edge(options=options)
-
-
-    # service = Service(ChromeDriverManager().install())
-    # options = webdriver.ChromeOptions()
-    # # options.add_argument('--headless')
-
-    # driver = webdriver.Chrome(service=service, options=options)
-    # chrome_options = Options()
-    # chrome_options.add_argument('--headless')
-    # chrome_options.add_argument('--no-sandbox')
-    # chrome_options.add_argument('--disable-dev-shm-usage')
-    # chrome_options.add_argument('--disable-gpu')
-    # chrome_options.add_argument('--remote-debugging-port=9222')
-    # service = Service(ChromeDriverManager().install())
-    # driver = webdriver.Chrome(service=service, options=chrome_options)
-    # driver = webdriver.Edge(options=chrome_options)
-    
-
-
-    # chrome_service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
-
     chrome_options = Options()
     options = [
         "--headless",
@@ -93,8 +38,6 @@ def init_driver():
 def access(driver,url):
     print("_"*30, "ACCESS URL","_"*30)
     driver.get(url)
-    
-    print(driver.title)
     sleep(5)
 
 
@@ -109,17 +52,13 @@ def search(driver, job, location):
     search_box_location.send_keys(Keys.RETURN)
     driver.implicitly_wait(5)
     
-    # next = driver.find_element(By.XPATH, '//a[@data-testid="pagination-page-next"]')
-    # next.click()
-    # sleep(4)
 
 
 def save_data(dict_jd):
-    directory = './'
+    directory = './data'
     
     today = str(datetime.date.today())
     filename = f"{directory}/data_{today}.json"
-    
     
     json_file = json.dumps(dict_jd, indent= 4, ensure_ascii=False)
     
@@ -140,7 +79,7 @@ def info_job(driver):
         num_next=15
         
     dict_job={}
-    for i in range(0,1): #num_next-2):
+    for i in range(0,num_next-2):
         info_jobs = driver.find_elements(By.XPATH, '//div[@class="job_seen_beacon"]')
         print("_"*30, "START","_"*30)
         
@@ -158,7 +97,6 @@ def info_job(driver):
                 name_job_ = driver.find_element(By.XPATH, '//h2[@data-testid="jobsearch-JobInfoHeader-title"]/span').text
                 name_job = name_job_.replace("- job post", "").strip()
                 
-                print(name_job)  
                 name_company = driver.find_element(By.XPATH, '//div[@data-testid="inlineHeader-companyName"]/span/a').text
 
                 location = driver.find_element(By.XPATH, '//div[@data-testid="inlineHeader-companyLocation"]/div').text

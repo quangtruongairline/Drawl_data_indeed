@@ -12,8 +12,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     
-    # options = Options()
-    # driver = webdriver.Chrome(options=options)
     driver=init_driver()
     
     url, job_, location = args.url, args.job, args.location
