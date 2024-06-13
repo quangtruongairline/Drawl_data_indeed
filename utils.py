@@ -56,7 +56,7 @@ def search(driver, job, location):
 
 
 def save_data(dict_jd):
-    directory = './data'
+    directory = './'
     
     if not os.path.exists(directory):
         os.makedirs(directory)
