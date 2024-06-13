@@ -9,6 +9,7 @@ from bs4 import BeautifulSoup
 import re
 import datetime
 import json    
+import os
 
 def init_driver():
     
@@ -57,6 +58,9 @@ def search(driver, job, location):
 def save_data(dict_jd):
     directory = './data'
     
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+        
     today = str(datetime.date.today())
     filename = f"{directory}/data_{today}.json"
     
