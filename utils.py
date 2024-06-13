@@ -78,10 +78,11 @@ def info_job(driver):
     num_job_=re.sub(r'\D', '', num_job)
     num_job=int(num_job_)
     num_next= num_job//15
+    
 
     if num_next >15 :
         num_next=15
-        
+    
     dict_job={}
     for i in range(0,num_next-2):
         info_jobs = driver.find_elements(By.XPATH, '//div[@class="job_seen_beacon"]')
@@ -131,10 +132,12 @@ def info_job(driver):
             except NoSuchElementException:
                 pass
         
-        next = driver.find_element(By.XPATH, '//a[@data-testid="pagination-page-next"]')
-        next.click()
-        sleep(4)
-        
+        try:
+            next = driver.find_element(By.XPATH, '//a[@data-testid="pagination-page-next"]')
+            next.click()
+            sleep(4)
+        except NoSuchElementException:
+            break;
         try:
             close = driver.find_element(By.XPATH, '//button[@aria-label="close"]')
             close.click()
