@@ -16,7 +16,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.8'  # Chọn phiên bản Python bạn cần
+        python-version: '3.10'  
 
     - name: Install dependencies
       run: |
@@ -24,45 +24,6 @@ jobs:
         pip install -r requirements.txt
 
         
-
-    # - name: Remove Chrome
-    #   run: sudo apt purge google-chrome-stable
-    # - name: Remove default Chromium
-    #   run: sudo apt purge chromium-browser
-    # - name: Install a new Chromium
-    #   run: sudo apt install -y chromium-browser
-      
-    # - name: Install a new Chromium
-    #   run: sudo apt install -y chromium-browser
-
-
-
-    # - name: Install Edge and EdgeDriver
-    #   run: |
-    #     sudo apt-get update
-    #     sudo apt-get install -y wget software-properties-common
-    #     wget https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
-    #     sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main"
-    #     sudo apt-get update
-    #     sudo apt-get install -y microsoft-edge-stable
-    #     EDGE_VERSION=$(microsoft-edge --version | grep -oP '\d+\.\d+\.\d+\.\d+')
-    #     wget https://msedgedriver.azureedge.net/${EDGE_VERSION}/edgedriver_linux64.zip
-    #     unzip edgedriver_linux64.zip
-    #     sudo mv msedgedriver /usr/local/bin/
-    # - name: Install Microsoft Edge
-    #   run: |
-    #     wget https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
-    #     sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-dev.list'
-    #     sudo apt update
-    #     sudo apt install microsoft-edge-stable
-
-    # - name: Install Chrome
-    #   run: |
-    #       sudo apt-get update
-    #       sudo apt-get install -y google-chrome-stable
-
-
-
     - name: Run scraping script
       run: python scrape_data.py
 
@@ -75,13 +36,3 @@ jobs:
         git push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    # - name: Commit and Push The Results From Python Selenium Action
-    #   run: |
-    #     git config --global user.name "github-actions[bot]"
-    #     git config --global user.email 'github-actions[bot]@users.noreply.github.com' 
-    #     git add -A
-    #     git commit -m "GitHub Actions Results added"
-    #     git push
-
-##"41898282+github-actions[bot]@users.noreply.github.com"

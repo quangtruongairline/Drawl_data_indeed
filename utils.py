@@ -45,8 +45,8 @@ def access(driver,url):
 def search(driver, job, location):
     print("_"*30, "SEARCH","_"*30)
 
-    search_box_job = driver.find_element(By.XPATH, '//input[@id="text-input-what"]')#(By.ID, 'text-input-what')
-    search_box_location=driver.find_element(By.XPATH, '//input[@id="text-input-where"]')#(By.ID, 'text-input-where')
+    search_box_job = driver.find_element(By.XPATH, '//input[@id="text-input-what"]')
+    search_box_location=driver.find_element(By.XPATH, '//input[@id="text-input-where"]')
     search_box_job.send_keys(job)
     search_box_location.send_keys(location)
 
@@ -56,7 +56,7 @@ def search(driver, job, location):
 
 
 def save_data(dict_jd):
-    directory = './'
+    directory = './data'
     
     if not os.path.exists(directory):
         os.makedirs(directory)
@@ -84,7 +84,7 @@ def info_job(driver):
         num_next=15
     
     dict_job={}
-    for i in range(0,num_next-2):
+    for i in range(0,1): #num_next-2):
         info_jobs = driver.find_elements(By.XPATH, '//div[@class="job_seen_beacon"]')
         print("_"*30, "START","_"*30)
         
