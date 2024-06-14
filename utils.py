@@ -84,7 +84,7 @@ def info_job(driver):
         num_next=15
     
     dict_job={}
-    for i in range(0,1): #num_next-2):
+    for i in range(0,num_next-2):
         info_jobs = driver.find_elements(By.XPATH, '//div[@class="job_seen_beacon"]')
         print("_"*30, "START","_"*30)
         
