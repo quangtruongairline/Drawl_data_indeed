@@ -10,6 +10,7 @@ import re
 import datetime
 import json    
 import os
+from datetime import datetime, timedelta
 
 def init_driver():
     
@@ -61,7 +62,7 @@ def save_data(dict_jd):
     if not os.path.exists(directory):
         os.makedirs(directory)
         
-    today = str(datetime.date.today())
+    today = datetime.today().strftime('%Y_%m_%d')
     filename = f"{directory}/data_{today}.json"
     
     json_file = json.dumps(dict_jd, indent= 4, ensure_ascii=False)
@@ -99,6 +100,19 @@ def info_job(driver):
             
             element.click()     
             try:              
+                today = datetime.today()
+                date_post= element.find_element(By.XPATH, '//span[@data-testid="myJobsStateDate"]').text
+          
+                if date_post != "":
+                    date_post_=re.sub(r'\D', '', date_post)
+                    posted_date = today - timedelta(days=int(date_post_))
+                    posted_date_str = posted_date.strftime('%Y-%m-%d')
+                else:
+                    posted_date_str=today.strftime('%Y-%m-%d')
+               
+                
+                
+                
                 name_job_ = driver.find_element(By.XPATH, '//h2[@data-testid="jobsearch-JobInfoHeader-title"]/span').text
                 name_job = name_job_.replace("- job post", "").strip()
                 
@@ -106,9 +120,11 @@ def info_job(driver):
 
                 location = driver.find_element(By.XPATH, '//div[@data-testid="inlineHeader-companyLocation"]/div').text
                 
+                
         
                 job_description = driver.find_elements(By.XPATH, '//div[@id="jobDescriptionText"]')
 
+                
                 content_jd = ""
                 for jd in job_description:
                     get_html = jd.get_attribute("innerHTML")             
@@ -125,7 +141,9 @@ def info_job(driver):
                         "job":name_job,
                         "company": name_company,
                         "location": location,
-                        "job_description":content_jd  
+                        "job_description":content_jd,
+                        "date_post": posted_date_str
+                        
                     }
                 
                 sleep(4)
