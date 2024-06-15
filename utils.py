@@ -102,9 +102,9 @@ def info_job(driver):
             try:              
                 today = datetime.today()
                 date_post= element.find_element(By.XPATH, '//span[@data-testid="myJobsStateDate"]').text
-          
-                if date_post != "":
-                    date_post_=re.sub(r'\D', '', date_post)
+                date_post_=re.sub(r'\D', '', date_post)
+                if date_post_ != "":
+                    
                     posted_date = today - timedelta(days=int(date_post_))
                     posted_date_str = posted_date.strftime('%Y-%m-%d')
                 else:
